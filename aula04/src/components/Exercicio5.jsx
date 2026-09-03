@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function StatusAPI() {
+export default function Exercicio5() {
   const [itens, setItens] = useState([])
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState(null)
@@ -14,7 +14,7 @@ export default function StatusAPI() {
         setCarregando(true)
         setErro(null)
 
-        // força latência artificial pra dar pra ver o "Carregando..."
+      
         await new Promise(resolve => setTimeout(resolve, 1500))
 
         const resp = await fetch('https://jsonplaceholder.typicode.com/users', { signal })

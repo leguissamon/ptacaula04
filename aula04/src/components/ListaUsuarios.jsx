@@ -6,20 +6,22 @@ export default function ListaUsuarios() {
   const [erro, setErro] = useState(null)
 
   useEffect(() => {
-    const controle = new AbortController()  // cria um controle
-    const signal = controle.signal          // o signal vigia a requisição
+    const controle = new AbortController() 
+    const signal = controle.signal          
 
     async function buscar() {
       try {
         setCarregando(true)
         setErro(null)
         const resp = await fetch('https://jsonplaceholder.typicode.com/users', { signal })
+        // const resp = await fetch('https://jsonplaceholder.typicode.com/usuariosenterrado', { signal }) // descomente para testar o erro
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
         const data = await resp.json()
+      // const data = [] // descomente para testar o estado vazio
         setUsuarios(data)
       } catch (e) {
         if (e.name !== 'AbortError') {
-          // Ignora AbortError: é quando nós mesmos cancelamos
+          
           setErro(e.message)
         }
       } finally {
@@ -29,7 +31,7 @@ export default function ListaUsuarios() {
 
     buscar()
 
-    // Cleanup: ao desmontar, cancela a requisição em andamento
+    
     return () => controle.abort()
   }, [])
 
