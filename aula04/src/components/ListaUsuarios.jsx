@@ -14,7 +14,7 @@ export default function ListaUsuarios() {
         setCarregando(true)
         setErro(null)
         const resp = await fetch('https://jsonplaceholder.typicode.com/users', { signal })
-        // const resp = await fetch('https://jsonplaceholder.typicode.com/usuariosenterrado', { signal }) // descomente para testar o erro
+        // const resp = await fetch('https://jsonplaceholder.typicode.com/testehttp', { signal }) // descomente para testar o erro
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
         const data = await resp.json()
       // const data = [] // descomente para testar o estado vazio
